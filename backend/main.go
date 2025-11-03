@@ -38,7 +38,6 @@ func main() {
 		return c.SendString("🚀 Noxer API работает!")
 	})
 
-	// Auth routes (public)
 	auth := app.Group("/api/auth")
 	auth.Post("/register", handler.RegisterUser)
 	auth.Post("/login", handler.LoginUser)
@@ -46,12 +45,10 @@ func main() {
 	auth.Post("/refresh", handler.RefreshToken)
 	auth.Post("/logout", handler.LogoutUser)
 
-	// Products routes (protected)
 	products := app.Group("/api/products", middleware.RequireAuth)
 	products.Get("/", handler.ListProducts)
 	products.Get("/search", handler.SearchProducts)
 
-	// Categories routes (protected)
 	categories := app.Group("/api/categories", middleware.RequireAuth)
 	categories.Get("/", handler.ListCategories)
 

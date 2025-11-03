@@ -13,7 +13,6 @@ export function useDebounce<T>(value: T, delay: number = 300): T {
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedValue(value), delay);
 
-    // очистка таймаута при изменении value или размонтировании
     return () => clearTimeout(handler);
   }, [value, delay]);
 

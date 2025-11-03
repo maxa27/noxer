@@ -43,9 +43,7 @@ const Register: React.FC = () => {
 
       navigate("/login");
     } catch (err: any) {
-      setErrorMsg(
-        err?.response?.data?.description || "Ошибка регистрации"
-      );
+      setErrorMsg(err?.response?.data?.description || "Ошибка регистрации");
     } finally {
       setLoading(false);
     }
@@ -129,11 +127,7 @@ const Register: React.FC = () => {
 
           {errorMsg && <span className={styles.error}>{errorMsg}</span>}
 
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={loading}
-          >
+          <button type="submit" className={styles.button} disabled={loading}>
             {loading ? "Загрузка..." : "Зарегистрироваться"}
           </button>
 

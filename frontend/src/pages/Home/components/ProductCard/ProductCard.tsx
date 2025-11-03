@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Product } from "../../../../types/api";
 import styles from "./ProductCard.module.scss";
 import { Heart, LikedHeart } from "@shared/icons";
+import { priceFormat } from "@shared/hooks/priceFormat";
 
 interface ProductCardProps {
   product: Product;
@@ -9,10 +10,6 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("ru-RU").format(price);
-  };
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -47,16 +44,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className={`${styles.favoriteBtn} ${isFavorite ? styles.active : ""}`}
           onClick={toggleFavorite}
         >
-          {isFavorite ? <LikedHeart styles={{ svg: styles.likedSvg}}/> : <Heart />}
+          {isFavorite ? (
+            <LikedHeart styles={{ svg: styles.likedSvg }} />
+          ) : (
+            <Heart />
+          )}
         </button>
       </div>
 
       <div className={styles.content}>
         <div className={styles.priceBlock}>
-          <span className={styles.price}>{formatPrice(product.price)} ₽</span>
+          <span className={styles.price}>{priceFormat(product.price)} ₽</span>
           {product.old_price && product.old_price > 0 && (
             <span className={styles.oldPrice}>
-              {formatPrice(product.old_price)} ₽
+              {priceFormat(product.old_price)} ₽
             </span>
           )}
           {product.discount && product.discount > 0 && (

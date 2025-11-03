@@ -20,11 +20,11 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
         slidesPerView="auto"
         freeMode={true}
         grabCursor={true}
-        loop={true} // чтобы не останавливался в конце
-        speed={5000} // скорость движения (меньше = быстрее)
+        loop={true}
+        speed={5000}
         autoplay={{
-          delay: 0, // без паузы
-          disableOnInteraction: false, // не останавливается при наведении
+          delay: 0,
+          disableOnInteraction: false,
         }}
         className={styles.swiper} 
       >

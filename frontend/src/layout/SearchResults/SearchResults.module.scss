@@ -1,5 +1,5 @@
 .wrapper {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 400px);
   padding: 16px;
 }
 
@@ -28,14 +28,16 @@
 }
 
 .resultsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  flex-direction: row;
 
   @media (max-width: 425px) {
     gap: 10px;
   }
 }
+
 
 .popularSearches {
   background: #fff;

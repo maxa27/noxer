@@ -42,7 +42,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ allProducts = [], onSelec
         <div className={styles.loading}>Загрузка...</div>
       ) : error ? (
         <div className={styles.noResults}>{error}</div>
-      ) : results.length === 0 ? (
+      ) : !results || results.length === 0 ? (
         <div className={styles.noResults}>Ничего не найдено по запросу "{debouncedQuery}"</div>
       ) : (
         <div className={styles.resultsGrid}>
