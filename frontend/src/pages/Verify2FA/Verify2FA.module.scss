@@ -1,0 +1,142 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 32px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  
+    @media (max-width: 600px) {
+      padding: 30px 24px;
+    }
+  
+    @media (max-width: 425px) {
+      padding: 24px 20px;
+    }
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .logo {
+    height: 64px;
+    width: auto;
+  
+    @media (max-width: 425px) {
+      height: 48px;
+    }
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: #1f1f1f;
+    margin: 0 0 12px;
+  
+    @media (max-width: 425px) {
+      font-size: 20px;
+    }
+  }
+  
+  .description {
+    text-align: center;
+    color: #6b6b6b;
+    font-size: 15px;
+    margin: 0 0 32px;
+  
+    @media (max-width: 425px) {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+  }
+  
+  .codeContainer {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+  
+    @media (max-width: 425px) {
+      gap: 6px;
+    }
+  }
+  
+  .codeInput {
+    width: 48px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.2s ease;
+  
+    @media (max-width: 425px) {
+      width: 40px;
+      height: 48px;
+      font-size: 20px;
+    }
+  
+    @media (max-width: 360px) {
+      width: 36px;
+      height: 44px;
+      font-size: 18px;
+    }
+  
+    &:focus {
+      border-color: #1677ff;
+      box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+    }
+  
+    &:disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .error {
+    display: block;
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
+  }
+  
+  .info {
+    text-align: center;
+    color: #6b6b6b;
+    font-size: 14px;
+    margin-top: 16px;
+  }
+  
+  .resendButton {
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    background-color: #1677ff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.25s ease;
+  
+    &:hover {
+      background-color: #0958d9;
+    }
+  }

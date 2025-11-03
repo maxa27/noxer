@@ -1,0 +1,29 @@
+.icon-mc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    width: max-content;
+  
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+  
+    svg path:last-child {
+      fill: #000;
+    }
+  }
+  
+  .default-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+    width: max-content;
+  
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+  }

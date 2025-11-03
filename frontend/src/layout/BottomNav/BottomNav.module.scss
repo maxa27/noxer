@@ -1,0 +1,40 @@
+.bottomNav {
+  position: fixed;
+  background: #fff;
+  border: 1px solid #dbdada;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  width: 95%;
+  border-radius: 50px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 53px;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 12px;
+  transition: transform 0.2s;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.icon {
+  font-size: 24px;
+}
+
+.label {
+  font-size: 11px;
+  color: #666;
+}

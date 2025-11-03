@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: noxer
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  mailhog:
+    image: mailhog/mailhog
+    platform: linux/amd64
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  noxer-db:
+    build: ./noxer-db
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/noxer?sslmode=disable"
+      SEED: "1"
+    command: ["./noxer-db"]
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+      noxer-db:
+        condition: service_started
+      mailhog:
+        condition: service_started
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/noxer?sslmode=disable"
+      JWT_SECRET: "replace_me_jwt"
+      REFRESH_SECRET: "replace_me_refresh"
+      ACCESS_EXPIRES: "15m"
+      REFRESH_EXPIRES: "168h"
+      SMTP_HOST: "mailhog"
+      SMTP_PORT: "1025"
+      EMAIL_FROM: "no-reply@noxer.local"
+      DEFAULT_AVATAR_PATH: "/static/default_avatar.png"
+      ENVIRONMENT: "development"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      backend:
+        condition: service_started
+    environment:
+      VITE_API_URL: "http://localhost:8080/api"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  pgdata:
+
